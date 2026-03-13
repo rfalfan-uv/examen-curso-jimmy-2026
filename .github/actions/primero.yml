@@ -1,0 +1,31 @@
+name: CI -Build
+
+on:
+  pull_request:
+    branches:
+      - main
+
+ 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: CMensaje Inicial
+        run: echo "Iniciando el proceso de CI para la rama main"
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up .net
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Verificar version .Net
+        run: dotnet --version
+
+      - name: Build del proyecto
+        run: dotnet build src/Api/Api.csproj --configuration Release
+      
+      - name: Run terminado    
+        run : echo "terminado" 
